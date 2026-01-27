@@ -24,3 +24,14 @@
 2. databasechangeloglock: It creates a lock to the DB. So, that only 1 transactions happens to DB whenever liquibase is running.
     - Liquibase acquires a lock before running migrations and releases it after completion. This table is automatically created and managed by Liquibase.
     - When Liquibase acquires a lock (using the databasechangeloglock table), it prevents other Liquibase processes from running migrations. However, regular application queries (such as SELECT, INSERT, UPDATE, DELETE) are not blocked by this lock. Only Liquibase migration operations wait for the lock to be released; normal app database operations continue unaffected.
+  
+## Avoid any checksum error
+- If this DB is shared / prod-like:
+- Revert the SQL file to original
+- Create a new changeset instead
+- Liquibase rule:
+  * Never modify an executed changeset
+- Temp Fix :
+  * **mvn liquibase:clearCheckSums
+mvn liquibase:update
+**
