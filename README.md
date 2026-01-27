@@ -18,3 +18,9 @@
 4. Then we created liquibase.properties with DB configuration and also, provided the path where the changelog should be triggered.
 5. Then we can run-> mvn liquibase:update (It checks any liquibase and run for once)
 6. Note: In .sql file even comments are read. Whereas, In JAVA - java compiler ignores the comment.
+
+## Changelog tables
+1. databasechangelog: It logs(or keep the data) of all the changes that where executed in the DB with info like date time author, descriptions etc.
+2. databasechangeloglock: It creates a lock to the DB. So, that only 1 transactions happens to DB whenever liquibase is running.
+    - Liquibase acquires a lock before running migrations and releases it after completion. This table is automatically created and managed by Liquibase.
+    - When Liquibase acquires a lock (using the databasechangeloglock table), it prevents other Liquibase processes from running migrations. However, regular application queries (such as SELECT, INSERT, UPDATE, DELETE) are not blocked by this lock. Only Liquibase migration operations wait for the lock to be released; normal app database operations continue unaffected.
