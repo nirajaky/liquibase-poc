@@ -17,3 +17,4 @@
       - We lose the ability to manage, validate, or rollback database changes independently of our app.
 4. Then we created liquibase.properties with DB configuration and also, provided the path where the changelog should be triggered.
 5. Then we can run-> mvn liquibase:update (It checks any liquibase and run for once)
+6. Note: In .sql file even comments are read. Whereas, In JAVA - java compiler ignores the comment.
