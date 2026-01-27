@@ -35,3 +35,5 @@
   * **mvn liquibase:clearCheckSums
 mvn liquibase:update
 **
+- Commands to generate the schema of cureent connected DB:
+  *  mvn liquibase:generateChangeLog "-Dliquibase.outputChangeLogFile=src/main/resources/db/changelog/existingDbLog.sql"
